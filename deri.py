@@ -8,8 +8,8 @@ class Item:
         print('price:', self.price)
 
 class Food(Item):
-    def __init__(self, name, price, use_by_date):
-        super().__init__(name, price)
+    def __init__(self, use_by_date, **rest):
+        super().__init__(**rest)
         self.use_by_date = use_by_date
 
     def show(self):
@@ -20,8 +20,8 @@ class Food(Item):
         print('eating', self.name)
 
 class Toy(Item):
-    def __init__(self, name, price, target_age):
-        super().__init__(name, price)
+    def __init__(self, target_age, **rest):
+        super().__init__(**rest)
         self.target_age = target_age
 
     def show(self):
@@ -31,12 +31,10 @@ class Toy(Item):
     def play(self):
         print('playing with', self.name)
 
-x = Food('chocotate', 100, 180)
+class Shokugan(Food, Toy):
+    pass
+
+x = Shokugan(name='chocolate+figure', price=450, use_by_date=180, target_age=3)
 x.show()
 x.eat()
-
-print()
-
-y = Toy('figure', 350, 3)
-y.show()
-y.play()
+x.play()
